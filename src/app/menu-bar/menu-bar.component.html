@@ -1,0 +1,31 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav class="sidenav-header" #sidenav mode="over">
+        <p><button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button></p>
+        <mat-nav-list>
+            <ng-container *ngIf="isLoggedIn$ | async; else loggedOutNav">
+                <mat-list-item (click)="logout()">Logout</mat-list-item>
+            </ng-container>
+
+            <ng-template #loggedOutNav>
+                <mat-list-item routerLink="/login">Login</mat-list-item>
+                <mat-list-item routerLink="/register">Register</mat-list-item>
+            </ng-template>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar class="desktop-toolbar" color="primary">
+            <p><button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button></p>
+            <span class="spacer"></span>
+            <span>MyApp</span>
+        </mat-toolbar>
+
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+<!-- Copyright 2024 Google LLC. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at https://angular.io/license -->

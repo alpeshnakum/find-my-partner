@@ -1,18 +1,21 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app'; // Import Firebase types
+import { map, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(private afAuth: AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth) {}
 
   // Register method
   async register(email: string, password: string) {
     try {
-      const result = await this.afAuth.createUserWithEmailAndPassword(email, password);
+      const result = await this.afAuth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
       return result;
     } catch (error) {
       throw error;
@@ -22,7 +25,10 @@ export class AuthService {
   // Login method
   async login(email: string, password: string) {
     try {
-      const result = await this.afAuth.signInWithEmailAndPassword(email, password);
+      const result = await this.afAuth.signInWithEmailAndPassword(
+        email,
+        password
+      );
       return result;
     } catch (error) {
       throw error;
@@ -55,5 +61,19 @@ export class AuthService {
   // Get the current logged-in user
   getUser() {
     return this.afAuth.authState;
+  }
+
+  isAuthenticated(): Observable<boolean> {
+    return this.afAuth.authState.pipe(
+      map((user) => !!user) // Returns true if user is logged in, false otherwise
+    );
+  }
+
+  async sendPasswordResetEmail(email: string) {
+    try {
+      await this.afAuth.sendPasswordResetEmail(email);
+    } catch (error) {
+      throw error;
+    }
   }
 }

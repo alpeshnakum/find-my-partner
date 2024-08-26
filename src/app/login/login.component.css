@@ -1,0 +1,28 @@
+/* Ensure proper spacing and centering of the form */
+.login-form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 16px;
+}
+
+mat-card {
+  padding: 16px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  margin-top: 16px;
+  width: 100%;
+}
+
+.google-login-button {
+  background-color: #db4437; /* Google Red */
+  color: white;
+}
+
+.google-login-button:hover {
+  background-color: #c1351d; /* Darker Red */
+}

@@ -1,0 +1,13 @@
+.register-form {
+  max-width: 400px;
+  margin: auto;
+}
+
+.link-container {
+  margin-top: 16px;
+  text-align: center;
+}
+
+mat-card {
+  padding: 16px;
+}
